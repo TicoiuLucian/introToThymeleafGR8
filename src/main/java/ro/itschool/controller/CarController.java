@@ -3,10 +3,7 @@ package ro.itschool.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ro.itschool.entity.Car;
 import ro.itschool.repository.CarRepository;
 
@@ -30,5 +27,15 @@ public class CarController {
         carRepository.save(car);
         return "redirect:/index";
     }
-//    ----------------------------------------------------------------
+    //----------------------------------------------------------------
+
+    //--------------------Delete car by id---------------------------- /car/delete/' + ${car.carId}
+
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteCar(@PathVariable Integer id) {
+        carRepository.deleteById(id);
+        return "redirect:/index";
+    }
+
+    //----------------------------------------------------------------
 }
