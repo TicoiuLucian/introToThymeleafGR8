@@ -29,13 +29,25 @@ public class CarController {
     }
     //----------------------------------------------------------------
 
-    //--------------------Delete car by id---------------------------- /car/delete/' + ${car.carId}
-
+    //--------------------Delete car by id----------------------------
     @RequestMapping(value = "/delete/{id}")
     public String deleteCar(@PathVariable Integer id) {
         carRepository.deleteById(id);
         return "redirect:/index";
     }
+    //----------------------------------------------------------------
 
+    //--------------------Edit car by id---------------------------- /car/delete/' + ${car.carId}
+    @RequestMapping(value = "/edit/{id}")
+    public String editCar(@PathVariable Integer id, Model model) {
+        model.addAttribute("carToBeEdited", carRepository.findById(id));
+        return "edit-car";
+    }
+
+    @RequestMapping(value = "/edit")
+    public String editAndSaveEditedCar(@ModelAttribute(value = "car") Car car) {
+        carRepository.save(car);
+        return "redirect:/index";
+    }
     //----------------------------------------------------------------
 }

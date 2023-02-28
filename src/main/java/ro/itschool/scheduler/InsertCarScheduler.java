@@ -29,7 +29,7 @@ public class InsertCarScheduler {
     // https://www.baeldung.com/cron-expressions
 
     //    UNCOMMENT BELOW FOR SCHEDULING
-    @Scheduled(cron = "0/10 * * * * *")
+//    @Scheduled(cron = "0/10 * * * * *")
     public void insertCarIntoDb() {
         Faker faker = new Faker();
         Car car = new Car();
@@ -48,7 +48,7 @@ public class InsertCarScheduler {
     }
 
 
-    @Scheduled(cron = "0/30 * * * * *")
+    //    @Scheduled(cron = "0/30 * * * * *")
     public void deleteDeletedCarsOlderThan2015() {
         carRepository.deleteDeletedCarsOlderThan2016();
         log.info("Deleting cars older than 2015...");
