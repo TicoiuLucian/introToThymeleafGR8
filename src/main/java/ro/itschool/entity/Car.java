@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Setter
 @Getter
@@ -23,6 +25,10 @@ public class Car {
     private String model;
 
     private Float price;
+
+    private Boolean deleted;
+
+    private LocalDate deletionDate;
 
 }
 
