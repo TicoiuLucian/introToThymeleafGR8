@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Spring Boot Thymeleaf - Bootstrap WebJars</title>
+    <title>Sold cars</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
-
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.3.0/css/all.css} "/>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="addCar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/car/add">Add Car</a>
@@ -30,35 +30,34 @@
     </div>
 </nav>
 <!--------------------------------------------->
-<form action="#" th:action="@{/car/add}" th:object="${car}" method="post">
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><h2>Manufacturer:</h2></label>
-        <div class="col-sm-8">
-            <br>
-            <input type="text" th:field="*{manufacturer}" id="manufacturer" required/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><h2>Model:</h2></label>
-        <div class="col-sm-8">
-            <br>
-            <input type="text" th:field="*{model}" id="model" required/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><h2>Price:</h2></label>
-        <div class="col-sm-8">
-            <br>
-            <input type="text" th:field="*{price}" id="price" required/>
-        </div>
-    </div>
 
-    <div class="form-group row">
-        <div class="col-sm-1">
-            <button type="submit" class="btn btn-success">Add car</button>
-        </div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table class="table table-striped table-responsive-md">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${soldCars.empty}">
+                <td colspan="4"> No Cars Available</td>
+            </tr>
+            <tr th:each="car : ${soldCars}">
+                <td><span th:text="${car.carId}">  </span></td>
+                <td><span th:text="${car.manufacturer}">  </span></td>
+                <td><span th:text="${car.model}"> </span></td>
+                <td><span th:text="${car.price}"> </span></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</form>
-
+    <div class="col-md-3">
+    </div>
+</div>
 </body>
 </html>

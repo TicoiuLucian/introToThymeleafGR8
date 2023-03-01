@@ -20,9 +20,13 @@ public class IndexController {
     //-----------------Home page--------------------------
     //-----------------Display all cars-------------------
     @RequestMapping
-    public String getIndex(Model model) {
-        List<Car> allCars = carRepository.findAll();
-        model.addAttribute("cars", allCars);
+    public String getIndex(Model model, String keyword) {
+//        List<Car> allCars = carRepository.findAll();
+//        model.addAttribute("cars", allCars);
+        if (keyword == null)
+            keyword = "";
+        model.addAttribute("cars", carRepository.findCarByKeyword(keyword));
+//        return "redirect:/index";
         return "index";
     }
     //----------------------------------------------------

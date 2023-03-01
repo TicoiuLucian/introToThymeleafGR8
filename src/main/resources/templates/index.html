@@ -22,8 +22,26 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/car/add">Add Car</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/car/sold">View Sold Cars</a>
+                </li>
             </ul>
         </div>
+        <form th:action="@{/index}" method="get">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="input-group mb-3">
+                        <input type="text" name="keyword" th:value="${keyword}"
+                               class="form-control input-text" placeholder="Search"
+                               aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-dark btn-md" type="submit"><i
+                                    class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </nav>
 <!--------------------------------------------->
@@ -38,21 +56,21 @@
                 <th>Manufacturer</th>
                 <th>Model</th>
                 <th>Price</th>
-                <th>Delete</th>
+                <th>Sell</th>
                 <th>Edit</th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${cars.empty}">
-                <td colspan="5"> No Cars Available</td>
+                <td colspan="6"> No Cars Available</td>
             </tr>
             <tr th:each="car : ${cars}">
                 <td><span th:text="${car.carId}">  </span></td>
                 <td><span th:text="${car.manufacturer}">  </span></td>
                 <td><span th:text="${car.model}"> </span></td>
                 <td><span th:text="${car.price}"> </span></td>
-                <td><a th:href="@{'/car/delete/' + ${car.carId}}"
-                       class="fa-solid fa-trash"></a>
+                <td><a th:href="@{'/car/sell/' + ${car.carId}}"
+                       class="fa-solid fa-money-bill"></a>
                 </td>
                 <td><a th:href="@{'/car/edit/' + ${car.carId}}"
                        class="fa-sharp fa-solid fa-pen-to-square"></a>

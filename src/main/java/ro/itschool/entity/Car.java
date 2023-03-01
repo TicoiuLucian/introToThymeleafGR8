@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
 
@@ -14,8 +15,8 @@ import java.time.LocalDate;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Where(clause = "sold = false")
 public class Car {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer carId;
@@ -26,10 +27,11 @@ public class Car {
 
     private Float price;
 
-    private Boolean deleted;
+    private Boolean sold = false;
 
-    private LocalDate deletionDate;
+    private LocalDate soldDate;
 
+    private LocalDate addDate;
 }
 
 

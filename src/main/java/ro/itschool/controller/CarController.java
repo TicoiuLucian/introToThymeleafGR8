@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import ro.itschool.entity.Car;
 import ro.itschool.repository.CarRepository;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/car")
 @RequiredArgsConstructor
@@ -24,15 +30,21 @@ public class CarController {
 
     @PostMapping(value = "/add")
     public String processForm(@ModelAttribute(value = "car") Car car) {
+        car.setAddDate(LocalDate.now());
         carRepository.save(car);
         return "redirect:/index";
     }
     //----------------------------------------------------------------
 
-    //--------------------Delete car by id----------------------------
-    @RequestMapping(value = "/delete/{id}")
+    //--------------------Sell car by id----------------------------
+    @RequestMapping(value = "/sell/{id}")
     public String deleteCar(@PathVariable Integer id) {
-        carRepository.deleteById(id);
+        Optional<Car> optionalCar = carRepository.findById(id);
+        optionalCar.ifPresent(car -> {
+            car.setSold(true);
+            car.setSoldDate(LocalDate.now());
+            carRepository.save(car);
+        });
         return "redirect:/index";
     }
     //----------------------------------------------------------------
@@ -50,4 +62,24 @@ public class CarController {
         return "redirect:/index";
     }
     //----------------------------------------------------------------
+
+
+    //--------------View sold cars--------------------------------
+    @RequestMapping(value = "/sold")
+    public String viewSoldCars(Model model) {
+
+        List<Car> soldCars = carRepository.findSoldCars();
+        model.addAttribute("soldCars", Objects.requireNonNullElseGet(soldCars, ArrayList::new));
+        return "sold-cars";
+    }
+    //------------------------------------------------------------
+
+    //-------------Search car by keyword------------------------
+
+//    @RequestMapping(value = "/search")
+//    public String searchCars(Model model, String keyword) {
+//        model.addAttribute("cars", carRepository.findCarByKeyword(keyword));
+//        return "redirect:/index";
+//    }
+    //------------------------------------------------------------
 }

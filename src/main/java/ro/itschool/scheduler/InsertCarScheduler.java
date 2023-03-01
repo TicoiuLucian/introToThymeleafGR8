@@ -4,7 +4,6 @@ import com.github.javafaker.Faker;
 import lombok.*;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ro.itschool.entity.Car;
 import ro.itschool.repository.CarRepository;
@@ -36,9 +35,9 @@ public class InsertCarScheduler {
         car.setModel(faker.animal().name());
         car.setManufacturer(faker.company().name());
         car.setPrice((float) faker.number().numberBetween(1000, 10000));
-        car.setDeleted(faker.bool().bool());
-        if (car.getDeleted()) {
-            car.setDeletionDate(LocalDate.of(
+        car.setSold(faker.bool().bool());
+        if (car.getSold()) {
+            car.setSoldDate(LocalDate.of(
                     faker.number().numberBetween(2000, 2023),
                     faker.number().numberBetween(1, 12),
                     faker.number().numberBetween(1, 31)));
@@ -50,7 +49,7 @@ public class InsertCarScheduler {
 
     //    @Scheduled(cron = "0/30 * * * * *")
     public void deleteDeletedCarsOlderThan2015() {
-        carRepository.deleteDeletedCarsOlderThan2016();
+//        carRepository.deleteSoldCarsOlderThan30Days();
         log.info("Deleting cars older than 2015...");
     }
 }
