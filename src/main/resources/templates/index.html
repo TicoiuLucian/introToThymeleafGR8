@@ -94,10 +94,10 @@
             <table class="table table-striped table-responsive-md">
                 <thead class="thead-dark">
                 <tr>
-                    <th th:replace="fragments/sorting :: sorting('carId','Id')"></th>
-                    <th th:replace="fragments/sorting :: sorting('manufacturer','Manufacturer')"></th>
-                    <th th:replace="fragments/sorting :: sorting('model','Model')"></th>
-                    <th th:replace="fragments/sorting :: sorting('price','Price')"></th>
+                    <th th:replace="~{fragments/sorting :: sorting('carId','Id')}"></th>
+                    <th th:replace="~{fragments/sorting :: sorting('manufacturer','Manufacturer')}"></th>
+                    <th th:replace="~{fragments/sorting :: sorting('model','Model')}"></th>
+                    <th th:replace="~{fragments/sorting :: sorting('price','Price')}"></th>
                     <th>Sell</th>
                     <th>Edit</th>
                 </tr>
