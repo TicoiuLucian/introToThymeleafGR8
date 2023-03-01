@@ -5,60 +5,54 @@
     <title>Spring Boot Thymeleaf - Bootstrap WebJars</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.3.0/css/all.css} "/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+
 
 </head>
 
 <body>
-<!-------------NAVBAR-------------------------------->
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/index">Home</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/car/add">Add Car</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/car/sold">View Sold Cars</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--------------------------------------------->
-<form action="#" th:action="@{/car/add}" th:object="${car}" method="post">
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><h2>Manufacturer:</h2></label>
-        <div class="col-sm-8">
-            <br>
-            <input type="text" th:field="*{manufacturer}" id="manufacturer" required/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><h2>Model:</h2></label>
-        <div class="col-sm-8">
-            <br>
-            <input type="text" th:field="*{model}" id="model" required/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><h2>Price:</h2></label>
-        <div class="col-sm-8">
-            <br>
-            <input type="text" th:field="*{price}" id="price" required/>
-        </div>
-    </div>
+<div th:insert="~{fragments/navbar.html}"></div>
 
-    <div class="form-group row">
-        <div class="col-sm-1">
-            <button type="submit" class="btn btn-success">Add car</button>
-        </div>
+<div class="container-fluid">
+    <h2 class="text-center"> Add Car </h2>
+
+    <div class="my-3">
+        <form th:action="@{/car/add}" th:object="${car}" method="post" enctype="multipart/form-data"
+              style="max-width: 550px; margin: 0 auto">
+            <input type="hidden" th:field="*{carId}"/>
+            <div class="p-3">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" for="manufacturer">Manufacturer</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{manufacturer}" class="form-control" id="manufacturer"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" for="model">Model</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{model}" class="form-control" id="model"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" for="price">Price</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{price}" class="form-control" id="price"/>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Add car</button>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 
 </body>
 </html>
