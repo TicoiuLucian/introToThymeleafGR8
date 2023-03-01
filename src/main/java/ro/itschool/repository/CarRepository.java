@@ -1,5 +1,7 @@
 package ro.itschool.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,5 +29,5 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
              c.price LIKE %:keyword%) 
              """,
             nativeQuery = true)
-    List<Car> findCarByKeyword(String keyword);
+    Page<Car> findCarByKeyword(String keyword, Pageable pageable);
 }

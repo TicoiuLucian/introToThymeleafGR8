@@ -1,9 +1,6 @@
 package ro.itschool.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
@@ -19,6 +16,7 @@ import java.time.LocalDate;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="carid")
     private Integer carId;
 
     private String manufacturer;
