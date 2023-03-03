@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import lombok.*;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ro.itschool.entity.Car;
 import ro.itschool.repository.CarRepository;
@@ -28,7 +29,7 @@ public class InsertCarScheduler {
     // https://www.baeldung.com/cron-expressions
 
     //    UNCOMMENT BELOW FOR SCHEDULING
-//    @Scheduled(cron = "0/10 * * * * *")
+//    @Scheduled(cron = "0/5 * * * * *")
     public void insertCarIntoDb() {
         Faker faker = new Faker();
         Car car = new Car();

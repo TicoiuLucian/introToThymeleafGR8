@@ -26,7 +26,7 @@ public class IndexController {
     @RequestMapping
     public String getIndex(Model model, @RequestParam(required = false) String keyword,
                            @RequestParam(defaultValue = "1") int page,
-                           @RequestParam(defaultValue = "6") int size,
+                           @RequestParam(defaultValue = "5") int size,
                            @RequestParam(defaultValue = "carId,asc") String[] sort) {
         String sortField = sort[0];
         String sortDirection = sort[1];

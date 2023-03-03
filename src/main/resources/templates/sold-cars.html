@@ -30,17 +30,19 @@
                 <th>Manufacturer</th>
                 <th>Model</th>
                 <th>Price</th>
+                <th>Sold date</th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${soldCars.empty}">
-                <td colspan="4"> No Cars Available</td>
+                <td colspan="5"> No Cars Available</td>
             </tr>
             <tr th:each="car : ${soldCars}">
                 <td><span th:text="${car.carId}">  </span></td>
                 <td><span th:text="${car.manufacturer}">  </span></td>
                 <td><span th:text="${car.model}"> </span></td>
                 <td><span th:text="${car.price}"> </span></td>
+                <td><span th:text="${car.soldDate}"> </span></td>
             </tr>
             </tbody>
         </table>
