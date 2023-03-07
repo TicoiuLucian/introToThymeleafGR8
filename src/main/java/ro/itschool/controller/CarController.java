@@ -67,19 +67,10 @@ public class CarController {
     //--------------View sold cars--------------------------------
     @RequestMapping(value = "/sold")
     public String viewSoldCars(Model model) {
-
         List<Car> soldCars = carRepository.findSoldCars();
         model.addAttribute("soldCars", Objects.requireNonNullElseGet(soldCars, ArrayList::new));
         return "sold-cars";
     }
     //------------------------------------------------------------
 
-    //-------------Search car by keyword------------------------
-
-//    @RequestMapping(value = "/search")
-//    public String searchCars(Model model, String keyword) {
-//        model.addAttribute("cars", carRepository.findCarByKeyword(keyword));
-//        return "redirect:/index";
-//    }
-    //------------------------------------------------------------
 }

@@ -30,4 +30,9 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
              """,
             nativeQuery = true)
     Page<Car> findCarByKeyword(String keyword, Pageable pageable);
+
+    @Query(value = """
+            SELECT * FROM CAR c WHERE c.price BETWEEN :minPrice AND :maxPrice
+            """, nativeQuery = true)
+    Page<Car> findCarsWithPriceBetween(Integer minPrice, Integer maxPrice, Pageable pageable);
 }
