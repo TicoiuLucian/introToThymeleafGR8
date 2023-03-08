@@ -4,7 +4,6 @@ import com.github.javafaker.Faker;
 import lombok.*;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ro.itschool.entity.Car;
 import ro.itschool.repository.CarRepository;

@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import ro.itschool.entity.Car;
 import ro.itschool.repository.CarRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping({"/index", "/"})
 @RequiredArgsConstructor
