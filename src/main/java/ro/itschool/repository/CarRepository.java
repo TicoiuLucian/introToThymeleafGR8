@@ -35,4 +35,10 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
             SELECT * FROM CAR c WHERE c.price BETWEEN :minPrice AND :maxPrice
             """, nativeQuery = true)
     Page<Car> findCarsWithPriceBetween(Integer minPrice, Integer maxPrice, Pageable pageable);
+
+    List<Car> findByManufacturer(String manufacturer);
+
+    List<Car> findByManufacturerAndModel(String manufacturer, String model);
+
+    List<Car> findByPriceBetween(Integer minPrice, Integer maxPrice);
 }
