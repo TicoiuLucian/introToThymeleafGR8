@@ -43,10 +43,6 @@ public class PersonRestController {
 
   @PostMapping
   public void savePerson(@RequestBody Person person) {
-    person.setId(5436457);
-    person.setName("Full Name");
-    person.setAddress("City, Street no 3");
-    person.setAge(45);
     personRepository.save(person);
   }
 
