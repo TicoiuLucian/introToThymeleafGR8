@@ -4,6 +4,8 @@ package ro.itschool.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Setter
 @Getter
@@ -21,4 +23,7 @@ public class Person {
     private String address;
 
     private Integer age;
+
+    private LocalDate addDate;
+
 }
